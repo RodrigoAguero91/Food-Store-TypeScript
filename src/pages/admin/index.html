@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Store - Panel Administrador</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="header-tienda">
+      <div class="logo">
+        <h1>Panel Admin - Food Store</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="../client/index.html">Ir a la Tienda</a>
+        <span id="user-info" style="color: white; margin-left: 10px; font-size: 0.9rem;"></span>
+        <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
+      </nav>
+    </header>
+
+    <main class="main-container" style="flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
+      <h2>Gestión de la Tienda</h2>
+      <p>Bienvenido al panel de administración. Aquí podrás gestionar los productos y usuarios del sistema.</p>
+      
+      
+      <div id="admin-content" style="margin-top: 20px; width: 100%; max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h3>Estado del Sistema</h3>
+        <p>Control de acceso por roles activo (Rol requerido: <strong>admin</strong>).</p>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Food Store. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" src="./admin.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Store - Catálogo</title>
+  <link rel="stylesheet" href="../../../style.css" />
+</head>
+<body>
+  
+  <header class="header-tienda">
+    <div class="logo">
+      <h1><a href="./home.html" style="color: white; text-decoration: none;">Food Store</a></h1>
+    </div>
+    <nav class="nav-links">
+      <a href="./home.html">Catálogo</a>
+      <a href="#">Mis Pedidos</a>
+      <a href="../cart/cart.html">Carrito 🛒</a>
+      <a href="#" id="link-admin" style="display: none;">Panel Admin</a>
+      <span id="user-info" style="color: white; margin-left: 10px; font-size: 0.9rem;"></span>
+      <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
+    </nav>
+  </header>
+
+  
+  <div class="layout-container">
+    <aside>
+      <h3>Categorías</h3>
+      <div id="categories-container" style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+        
+      </div>
+    </aside>
+
+    <main>
+      <div class="buscador-container">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Buscar productos por nombre..." 
+        />
+      </div>
+
+      <div id="contenedor-productos" class="grid-productos">
+        
+      </div>
+    </main>
+  </div>
+
+ 
+  <footer>
+    <p>&copy; 2026 Food Store. Todos los derechos reservados.</p>
+  </footer>
+
+  <script type="module" src="./home.ts"></script>
+</body>
+</html>
