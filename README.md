@@ -1,6 +1,6 @@
 # Food Store - TypeScript (Evaluación 1 - Programación III)
 
-alumno: Rodrigo Aguero
+# alumno: Rodrigo Aguero
 Aplicación web frontend desarrollada como parte de la Tecnicatura Universitaria en Programación (UTN). Consiste en un catálogo de productos dinámico con un sistema de carrito de compras persistente, buscador y filtros por categoría.
 
 ## 🚀 Funcionalidades Principales
