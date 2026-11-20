@@ -1,21 +1,20 @@
 import { getSessionUser } from './utils/auth';
-import { navigate } from './utils/navigate';
+import { replaceRoute } from './utils/navigate';
 import { Rol } from './types/Rol';
 
 const checkRouteProtection = (): void => {
   const currentPath = window.location.pathname;
   const user = getSessionUser();
 
- 
-  if (currentPath === '/' || currentPath === '') {
+  if (currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
     if (user) {
       if (user.rol === Rol.ADMIN) {
-        navigate('/src/pages/admin/'); 
+        replaceRoute('src/pages/admin/index.html');
       } else {
-        navigate('/src/pages/client/');
+        replaceRoute('src/pages/client/home/home.html');
       }
     } else {
-      navigate('/src/pages/auth/login/');
+      replaceRoute('src/pages/auth/login/index.html');
     }
     return;
   }
@@ -25,13 +24,13 @@ const checkRouteProtection = (): void => {
 
   if ((isAdminRoute || isClientRoute) && !user) {
     alert('Debes iniciar sesión para acceder.');
-    navigate('/src/pages/auth/login/');
+    replaceRoute('src/pages/auth/login/index.html');
     return;
   }
 
   if (isAdminRoute && user && user.rol !== Rol.ADMIN) {
     alert('Acceso denegado. No tienes permisos de administrador.');
-    navigate('/src/pages/client/');
+    replaceRoute('src/pages/client/home/home.html');
   }
 };
 

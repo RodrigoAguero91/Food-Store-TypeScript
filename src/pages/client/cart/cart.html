@@ -4,29 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Food Store - Carrito</title>
-  <link rel="stylesheet" href="../../../style.css" />
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <header>
-    <h1><a href="/src/pages/client/home/home.html" style="color: white; text-decoration: none;">Food Store</a></h1>
-    <nav>
-      
+  <header class="header-tienda">
+    <div class="logo">
+      <h1><a href="../home/home.html" style="color: white; text-decoration: none;">Food Store</a></h1>
+    </div>
+    <nav class="nav-links">
       <a href="../home/home.html">Catálogo</a>
-      <a href="../cart/cart.html">Ver Carrito 🛒</a>
+      <a href="../orders/orders.html">Mis Pedidos</a>
+      <a href="./cart.html">Carrito 🛒</a>
+      <span id="user-info" class="user-badge"></span>
+      <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
     </nav>
   </header>
 
-  <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+  <main class="cart-page">
     <h2>Tu Carrito de Compras</h2>
-    
-    <div id="cart-container" style="margin-top: 1.5rem; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      
-    </div>
 
-    <div id="cart-summary" style="margin-top: 2rem; border-top: 2px solid #eee; padding-top: 1rem; text-align: right; display: none;">
-      <h3>Total a pagar: $<span id="cart-total">0</span></h3>
+    <div id="cart-container" class="cart-box"></div>
+
+    <div id="cart-summary" class="cart-summary" style="display: none;">
+      <div class="checkout-controls">
+        <label for="forma-pago">Forma de pago:</label>
+        <select id="forma-pago">
+          <option value="EFECTIVO">EFECTIVO</option>
+          <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+          <option value="TARJETA">TARJETA</option>
+        </select>
+      </div>
+      <h3>Total a pagar: $<span id="cart-total">0.00</span></h3>
+      <div class="cart-actions">
+        <button type="button" id="btn-clear-cart" class="btn-secondary">Vaciar Carrito</button>
+        <button type="button" id="btn-checkout" class="btn-primary">Confirmar Pedido</button>
+      </div>
     </div>
   </main>
+
+  <footer>
+    <p>&copy; 2026 Food Store. Todos los derechos reservados.</p>
+  </footer>
 
   <script type="module" src="./cart.ts"></script>
 </body>

@@ -12,21 +12,53 @@
         <h1>Panel Admin - Food Store</h1>
       </div>
       <nav class="nav-links">
-        <a href="../client/index.html">Ir a la Tienda</a>
-        <span id="user-info" style="color: white; margin-left: 10px; font-size: 0.9rem;"></span>
+        <a href="../client/home/home.html">Ir a la Tienda</a>
+        <a href="../client/orders/orders.html">Mis Pedidos</a>
+        <span id="user-info" class="user-badge"></span>
         <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
       </nav>
     </header>
 
-    <main class="main-container" style="flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
+    <main class="admin-main">
       <h2>Gestión de la Tienda</h2>
-      <p>Bienvenido al panel de administración. Aquí podrás gestionar los productos y usuarios del sistema.</p>
-      
-      
-      <div id="admin-content" style="margin-top: 20px; width: 100%; max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <h3>Estado del Sistema</h3>
-        <p>Control de acceso por roles activo (Rol requerido: <strong>admin</strong>).</p>
-      </div>
+
+      <section class="admin-panel">
+        <h3>Alta de Categoría</h3>
+        <form id="form-categoria" class="admin-form-inline">
+          <input type="text" id="cat-nombre" required placeholder="Nombre categoría" />
+          <input type="text" id="cat-desc" placeholder="Descripción (opcional)" />
+          <button type="submit" class="btn-primary">Crear Categoría</button>
+        </form>
+        <div id="admin-categories-list" class="admin-tags"></div>
+      </section>
+
+      <section class="admin-panel">
+        <h3>Alta / Edición de Producto</h3>
+        <form id="form-producto" class="admin-form-grid">
+          <input type="hidden" id="prod-id" />
+          <input type="text" id="prod-nombre" required placeholder="Nombre del producto" />
+          <select id="prod-categoria" required></select>
+          <input type="number" id="prod-precio" step="0.01" min="0.01" required placeholder="Precio (> 0)" />
+          <input type="number" id="prod-stock" min="0" required placeholder="Stock (>= 0)" />
+          <input type="text" id="prod-desc" placeholder="Descripción" />
+          <label class="checkbox-label">
+            <input type="checkbox" id="prod-disponible" checked />
+            Disponible
+          </label>
+          <div class="form-actions">
+            <button type="submit" id="btn-save-prod" class="btn-primary">Guardar Producto</button>
+            <button type="button" id="btn-cancel-edit" class="btn-secondary" style="display: none;">Cancelar</button>
+          </div>
+        </form>
+
+        <h4>Productos Activos</h4>
+        <div id="admin-products-list" class="admin-table-wrap"></div>
+      </section>
+
+      <section class="admin-panel">
+        <h3>Pedidos Registrados</h3>
+        <div id="admin-orders-list" class="orders-list"></div>
+      </section>
     </main>
 
     <footer>
