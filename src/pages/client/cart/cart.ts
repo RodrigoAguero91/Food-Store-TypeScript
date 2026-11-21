@@ -100,7 +100,7 @@ btnCheckout.addEventListener('click', () => {
   }
 
   alert(`¡Pedido ${result.order.id} confirmado! Total: $${result.order.total.toFixed(2)}`);
-  replaceRoute('src/pages/client/orders/orders.html');
+  replaceRoute('src/pages/orders/orders.html');
 });
 
 if (btnLogout) {
