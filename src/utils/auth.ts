@@ -1,10 +1,11 @@
 import type { IUser } from '../types/IUser';
 import { Rol } from '../types/Rol';
+import { getSeedUsers } from '../data/seedExtra';
 
-const USERS_KEY = 'foodstore_users';
+const USERS_KEY = 'foodstore_seed_users';
 const SESSION_KEY = 'userData';
 
-const DEFAULT_USERS: IUser[] = [
+const FALLBACK_USERS: IUser[] = [
   {
     id: 'admin-1',
     nombre: 'Admin',
@@ -26,16 +27,21 @@ const DEFAULT_USERS: IUser[] = [
 ];
 
 export const getUsers = (): IUser[] => {
+  const seeded = getSeedUsers();
+  if (seeded.length > 0) {
+    return seeded;
+  }
+
   const data = localStorage.getItem(USERS_KEY);
   if (!data) {
-    localStorage.setItem(USERS_KEY, JSON.stringify(DEFAULT_USERS));
-    return [...DEFAULT_USERS];
+    localStorage.setItem(USERS_KEY, JSON.stringify(FALLBACK_USERS));
+    return [...FALLBACK_USERS];
   }
   try {
     const parsed = JSON.parse(data) as IUser[];
     return parsed.filter((u) => !u.eliminado);
   } catch {
-    return [...DEFAULT_USERS];
+    return [...FALLBACK_USERS];
   }
 };
 
@@ -46,10 +52,10 @@ export const saveUser = (user: IUser): void => {
     try {
       allUsers = JSON.parse(allData) as IUser[];
     } catch {
-      allUsers = [...DEFAULT_USERS];
+      allUsers = [...getUsers()];
     }
   } else {
-    allUsers = [...DEFAULT_USERS];
+    allUsers = [...getUsers()];
   }
   allUsers.push({ ...user, eliminado: false });
   localStorage.setItem(USERS_KEY, JSON.stringify(allUsers));

@@ -1,23 +1,26 @@
 import type { EstadoPedido, FormaPago, IPedido } from '../types/pedido';
 import type { ICartItem } from '../types/product';
 import { decrementStockBatch } from '../data/data';
+import { getSeedOrders } from '../data/seedExtra';
 import { clearCart } from './cart';
 
-const ORDERS_KEY = 'foodstore_orders';
+const ORDERS_KEY = 'foodstore_seed_orders';
 
 export function getAllOrders(): IPedido[] {
   const raw = localStorage.getItem(ORDERS_KEY);
-  if (!raw) return [];
+  if (!raw) {
+    return getSeedOrders();
+  }
   try {
     const parsed = JSON.parse(raw) as IPedido[];
     return parsed.filter((o) => !o.eliminado);
   } catch {
-    return [];
+    return getSeedOrders();
   }
 }
 
 export function getOrdersByUser(userId: string): IPedido[] {
-  return getAllOrders().filter((o) => o.usuarioId === userId);
+  return getAllOrders().filter((o) => String(o.usuarioId) === String(userId));
 }
 
 export function createOrderFromCart(
@@ -49,7 +52,7 @@ export function createOrderFromCart(
   const newOrder: IPedido = {
     id: `PED-${Date.now().toString().slice(-6)}`,
     fecha: new Date().toISOString().split('T')[0],
-    usuarioId: user.id,
+    usuarioId: String(user.id),
     usuarioEmail: user.email,
     estado: 'PENDIENTE',
     formaPago,
@@ -58,8 +61,7 @@ export function createOrderFromCart(
     eliminado: false,
   };
 
-  const raw = localStorage.getItem(ORDERS_KEY);
-  const all: IPedido[] = raw ? (JSON.parse(raw) as IPedido[]) : [];
+  const all = getAllOrders();
   all.unshift(newOrder);
   localStorage.setItem(ORDERS_KEY, JSON.stringify(all));
   clearCart();
@@ -71,6 +73,6 @@ export function updateOrderStatus(orderId: string, estado: EstadoPedido): void {
   const raw = localStorage.getItem(ORDERS_KEY);
   if (!raw) return;
   const all: IPedido[] = JSON.parse(raw) as IPedido[];
-  const updated = all.map((o) => (o.id === orderId ? { ...o, estado } : o));
+  const updated = all.map((o) => (String(o.id) === String(orderId) ? { ...o, estado } : o));
   localStorage.setItem(ORDERS_KEY, JSON.stringify(updated));
 }

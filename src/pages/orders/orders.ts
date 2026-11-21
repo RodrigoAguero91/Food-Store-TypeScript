@@ -41,7 +41,7 @@ function renderOrders(): void {
     card.innerHTML = `
       <div class="order-header">
         <div>
-          <h3>Pedido ${order.id}</h3>
+          <h3>Pedido #${order.id}</h3>
           <p class="muted">Fecha: ${order.fecha} | Pago: ${order.formaPago}</p>
         </div>
         <span class="status-pill status-${order.estado.toLowerCase()}">${order.estado}</span>

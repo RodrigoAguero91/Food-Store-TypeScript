@@ -2,8 +2,7 @@ import { getProducts, getCategories, resolveProductImage } from '../../../data/d
 import type { IProduct } from '../../../types/product';
 import { addToCart, getCart } from '../../../utils/cart';
 import { getSessionUser, logout } from '../../../utils/auth';
-import { protectRoute, replaceRoute } from '../../../utils/navigate';
-import { Rol } from '../../../types/Rol';
+import { protectRoute, replaceRoute, isAdminRole } from '../../../utils/navigate';
 
 if (!protectRoute(false)) {
   throw new Error('Acceso no autorizado');
@@ -21,7 +20,7 @@ const sessionUser = getSessionUser();
 if (userInfoSpan && sessionUser) {
   userInfoSpan.textContent = `${sessionUser.nombre || sessionUser.email} (${sessionUser.rol})`;
 }
-if (linkAdmin && sessionUser?.rol === Rol.ADMIN) {
+if (linkAdmin && isAdminRole(sessionUser?.rol)) {
   linkAdmin.style.display = 'inline-block';
 }
 

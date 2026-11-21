@@ -20,6 +20,10 @@ export function replaceRoute(relativeFromRoot: string): void {
   window.location.replace(resolveAppPath(relativeFromRoot));
 }
 
+export function isAdminRole(role?: string | Rol): boolean {
+  return String(role ?? '').toLowerCase() === String(Rol.ADMIN).toLowerCase();
+}
+
 export const protectRoute = (requireAdmin = false): boolean => {
   const user = getSessionUser();
   const currentPath = window.location.pathname;
@@ -30,7 +34,7 @@ export const protectRoute = (requireAdmin = false): boolean => {
     return false;
   }
 
-  if (requireAdmin && user && user.rol !== Rol.ADMIN) {
+  if (requireAdmin && user && !isAdminRole(user.rol)) {
     alert('Acceso denegado: No tenés permisos de administrador.');
     replaceRoute('src/pages/client/home/home.html');
     return false;

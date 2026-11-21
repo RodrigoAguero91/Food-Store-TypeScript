@@ -15,7 +15,9 @@ if (formLogin) {
     const password = inputPassword.value.trim();
 
     const users = getUsers();
-    const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+    const user = users.find(
+      (u) => u.email.toLowerCase() === email.toLowerCase() && (u.password ?? '') === password
+    );
 
     if (user) {
       setSessionUser(user);

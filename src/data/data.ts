@@ -179,7 +179,9 @@ export function deleteProductLogical(id: number): void {
   localStorage.setItem(PRODUCTS_KEY, JSON.stringify(updated));
 }
 
-export function decrementStockBatch(items: { productId: number; cantidad: number }[]): { ok: boolean; error?: string } {
+export function decrementStockBatch(
+  items: { productId: number; cantidad: number }[]
+): { ok: boolean; error?: string } {
   const raw = localStorage.getItem(PRODUCTS_KEY);
   const all: IProduct[] = raw ? (JSON.parse(raw) as IProduct[]) : [...DEFAULT_PRODUCTS];
 
