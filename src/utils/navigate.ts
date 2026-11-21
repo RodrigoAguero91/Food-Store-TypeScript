@@ -2,9 +2,13 @@ import { getSessionUser } from './auth';
 import { Rol } from '../types/Rol';
 
 export function resolveAppPath(relativeFromRoot: string): string {
-  const clean = relativeFromRoot.replace(/^\.?\/?/, '');
-  const base = import.meta.env.BASE_URL || './';
-  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+  const clean = relativeFromRoot.replace(/^\/+/, '');
+  const rawBase = import.meta.env.BASE_URL || '/';
+  const normalizedBase = rawBase.startsWith('.')
+    ? '/'
+    : rawBase.endsWith('/')
+      ? rawBase
+      : `${rawBase}/`;
   return `${normalizedBase}${clean}`;
 }
 

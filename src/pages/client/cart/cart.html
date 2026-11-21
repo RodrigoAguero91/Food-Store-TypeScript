@@ -15,6 +15,7 @@
       <a href="../home/home.html">Catálogo</a>
       <a href="../../orders/orders.html">Mis Pedidos</a>
       <a href="./cart.html">Carrito 🛒</a>
+      <a href="../../admin/index.html" id="link-admin" style="display: none;">Panel Admin</a>
       <span id="user-info" class="user-badge"></span>
       <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
     </nav>
@@ -22,9 +23,7 @@
 
   <main class="cart-page">
     <h2>Tu Carrito de Compras</h2>
-
     <div id="cart-container" class="cart-box"></div>
-
     <div id="cart-summary" class="cart-summary" style="display: none;">
       <div class="checkout-controls">
         <label for="forma-pago">Forma de pago:</label>
@@ -36,8 +35,8 @@
       </div>
       <h3>Total a pagar: $<span id="cart-total">0.00</span></h3>
       <div class="cart-actions">
-        <button type="button" id="btn-clear-cart" class="btn-secondary">Vaciar Carrito</button>
-        <button type="button" id="btn-checkout" class="btn-primary">Confirmar Pedido</button>
+        <button id="btn-clear-cart" class="btn-secondary">Vaciar Carrito</button>
+        <button id="btn-checkout" class="btn-primary">Confirmar Pedido</button>
       </div>
     </div>
   </main>

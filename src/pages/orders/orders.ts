@@ -1,6 +1,7 @@
 import { getOrdersByUser } from '../../utils/orders';
 import { getSessionUser, logout } from '../../utils/auth';
 import { protectRoute, replaceRoute } from '../../utils/navigate';
+import { getSeedOrders } from '../../data/seedExtra';
 import type { IPedido, IDetallePedido } from '../../types/pedido';
 
 if (!protectRoute(false)) {
@@ -22,7 +23,7 @@ function renderOrders(): void {
 
   if (orders.length === 0) {
     ordersContainer.innerHTML =
-      '<div class="cart-box"><p>Todavía no realizaste pedidos. <a href="../client/home/home.html">Ir al catálogo</a></p></div>';
+      '<div class="cart-box"><p>Todavía no realizaste pedidos. <a href="../home/home.html">Ir al catálogo</a></p></div>';
     return;
   }
 
@@ -60,4 +61,5 @@ if (btnLogout) {
   });
 }
 
+getSeedOrders();
 renderOrders();

@@ -8,6 +8,7 @@ import {
   saveProduct,
   deleteProductLogical,
 } from '../../data/data';
+import { getSeedOrders, getSeedUsers } from '../../data/seedExtra';
 import { getAllOrders, updateOrderStatus } from '../../utils/orders';
 import type { EstadoPedido } from '../../types/pedido';
 
@@ -240,6 +241,9 @@ function renderAdminOrders() {
     adminOrdersList.appendChild(card);
   });
 }
+
+getSeedUsers();
+getSeedOrders();
 
 renderAdminCategories();
 renderAdminProducts();
